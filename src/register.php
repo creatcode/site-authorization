@@ -1,6 +1,6 @@
 <?php
 require_once "../extend/fast/Http.php";
-require_once "../vendor/jiege/license/src/CloudService.php";
+require_once "../vendor/jae/core/src/CloudService.php";
 require_once "../thinkphp/library/think/Config.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -16,7 +16,7 @@ if (is_file($lockFile)) {
 $config = include "../application/extra/cloud.php";
 foreach ($config as $key => $value) {
     if (empty($value)) {
-        $msgcontent = "请先在配置文件中填写完整的配置信息再进行操作";
+        $msgcontent = "请先在配置文件 application/extra/cloud.php 中填写完整的配置信息再进行操作";
         echo <<<EOF
     <style>
     .fullscreen-mask {
@@ -76,7 +76,7 @@ if ($method == 'POST') {
             $params['type'] = 1;
         }
 
-        $macAddress = \jiegelic\CloudService::init()->getcode();
+        $macAddress = \safeaccess\CloudService::init()->getcode();
         if (empty($macAddress)) {
             throw new Exception('获取设备编码失败');
         }

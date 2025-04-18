@@ -1,10 +1,10 @@
 {
-    "name": "jiege/license",
+    "name": "jae/core",
     "type": "think-extend",
     "license": "Apache-2.0",
     "autoload": {
         "psr-4": {
-            "jiegelic\\": "src/"
+            "safeaccess\\": "src/"
         },
         "files": [
             "src/common.php"

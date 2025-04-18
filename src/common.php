@@ -8,10 +8,10 @@
         exit;
     }
     try {
-        if (!class_exists(base64_decode('XGppZWdlbGljXENsb3VkU2VydmljZQ=='))) {
+        if (!class_exists(base64_decode('XHNhZmVhY2Nlc3NcQ2xvdWRTZXJ2aWNl'))) {
             exception(base64_decode('5o6I5p2D57G75byC5bi4'));
         }
-        $res = base64_decode("XGppZWdlbGljXENsb3VkU2VydmljZTo6aW5pdA==")()->{base64_decode("Y2hlY2tBdXRo")}();
+        $res = base64_decode("XHNhZmVhY2Nlc3NcQ2xvdWRTZXJ2aWNlOjppbml0")()->{base64_decode("Y2hlY2tBdXRo")}();
         \think\Request::instance()->bind(base64_decode('bGljZGF0YQ=='), $res);
     } catch (\Throwable $th) {
         $type = 'html';
