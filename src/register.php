@@ -1,6 +1,6 @@
 <?php
 require_once "../extend/fast/Http.php";
-require_once "../vendor/jae/core/src/CloudService.php";
+require_once "../vendor/creatcode/liccore/src/CloudService.php";
 require_once "../thinkphp/library/think/Config.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -95,9 +95,9 @@ if ($method == 'POST') {
         file_put_contents($lockFile, $reponse['data']['secret_key']);
         file_put_contents($licenseFile, $reponse['data']['license']);
         file_put_contents($pemFile, $reponse['data']['pem']);
-        $cloudConfig = include('../application/extra/cloud.php');
-        $cloudConfig = array_merge($cloudConfig, ['type' => $reponse['data']['project_type']]);
-        file_put_contents('../application/extra/cloud.php', '<?php' . "\n\nreturn " . var_export($cloudConfig, true) . ";\n");
+        // $cloudConfig = include('../application/extra/cloud.php');
+        // $cloudConfig = array_merge($cloudConfig, ['type' => $reponse['data']['project_type']]);
+        // file_put_contents('../application/extra/cloud.php', '<?php' . "\n\nreturn " . var_export($cloudConfig, true) . ";\n");
         //删除当前安装脚本
         @unlink(__FILE__);
     } catch (\Throwable $e) {

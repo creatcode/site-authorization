@@ -1,5 +1,5 @@
 {
-    "name": "jae/core",
+    "name": "creatcode/liccore",
     "type": "think-extend",
     "license": "Apache-2.0",
     "autoload": {
