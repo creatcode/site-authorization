@@ -66,7 +66,7 @@ if ($method == 'POST') {
         $params['period'] = $_POST['period'] ?? '';
         $params['devnum'] = $_POST['devnum'] ?? '-1';
         $params['version'] = $config['version'];
-        $params['project_id'] = $_POST['project_id'];
+        $params['project_id'] = $_POST['project_id'] ?? $config['type'];
         $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'];
         $fullDomain = $protocol . '://' . $host;
@@ -332,14 +332,14 @@ ZXN0YW1wADIwMjUtMDQtMDhUMDU6Mzk6MTYrMDA6MDAshFGAAAAAAElFTkSuQmCC" />
                 <div id="error" style="display:none"></div>
                 <div id="success" style="display:none"></div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <div class="form-field">
                         <label>项目类型</label>
                         <select name="project_id" class="custom-select" required id="make">
                             <option value="">----- 请选择项目类型 -----</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <div class="form-field">
                         <label>站点名称</label>
@@ -352,13 +352,15 @@ ZXN0YW1wADIwMjUtMDQtMDhUMDU6Mzk6MTYrMDA6MDAshFGAAAAAAElFTkSuQmCC" />
                         <input type="text" name="period" value="" required="" id="ID-laydate-demo" readonly>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-field">
-                        <label>授权设备数</label>
-                        <input type="text" name="devnum" value="-1" required="">
-                        <span>tips:-1表示不限制</span>
+                <?php if ($config['type'] == 'iotadmin'): ?>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label>授权设备数</label>
+                            <input type="text" name="devnum" value="-1" required="">
+                            <span>tips:-1表示不限制</span>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
                 <div class="form-buttons">
                     <button type="submit">提 交</button>
@@ -367,16 +369,17 @@ ZXN0YW1wADIwMjUtMDQtMDhUMDU6Mzk6MTYrMDA6MDAshFGAAAAAAElFTkSuQmCC" />
 
             <script>
                 // 获取项目数据
-                function callback(data) {
-                    data.forEach(function(item) {
-                        $('#make').append('<option value="' + item.id + '">' + item.name + '</option>');
-                    });
-                }
-                $.ajax({
-                    url: "<?php echo $config['url'] ?>" + '/api/index/getproject',
-                    type: "GET",
-                    dataType: "jsonp",
-                })
+                // function callback(data) {
+                //     data.forEach(function(item) {
+                //         $('#make').append('<option value="' + item.id + '">' + item.name + '</option>');
+                //     });
+                // }
+                let baseurl = "<?php echo $config['url'] ?>";
+                // $.ajax({
+                //     url: baseurl + '/api/index/getproject',
+                //     type: "GET",
+                //     dataType: "jsonp",
+                // })
 
                 $(function() {
                     $('form :input:first').select();
