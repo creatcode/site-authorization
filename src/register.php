@@ -67,14 +67,11 @@ if ($method == 'POST') {
         $params['devnum'] = $_POST['devnum'] ?? '-1';
         $params['version'] = $config['version'];
         $params['project_id'] = $_POST['project_id'] ?? $config['type'];
+        $params['type'] = $config['env'];
         $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'];
         $fullDomain = $protocol . '://' . $host;
         $params['url'] = $fullDomain;
-        $params['type'] = 2;
-        if (preg_match('/^(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|192\.168\.|127\.0\.0\.1)/', $_SERVER['SERVER_ADDR'] ?? '127.0.0.1')) {
-            $params['type'] = 1;
-        }
 
         $macAddress = \safeaccess\CloudService::init()->getcode();
         if (empty($macAddress)) {
