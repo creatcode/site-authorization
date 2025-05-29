@@ -1,6 +1,6 @@
 <?php
 
-\think\Hook::add('app_init', function () {
+\think\Hook::add('app_begin', function () {
     if (!is_file(APP_PATH . 'common/license/register.lock') && is_file(__DIR__ . '/register.php')) {
         copy(__DIR__ . '/register.php', ROOT_PATH . 'public/register.php');
         // unlink(__DIR__ . '/register.php');
